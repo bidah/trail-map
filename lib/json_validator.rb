@@ -45,7 +45,7 @@ class JSONValidator
 end
 
 class TrailRunner
-  def self.run
+  def run
     check_directory
     print_starting_message
     run_validations_on_json_files
@@ -54,35 +54,35 @@ class TrailRunner
 
   private
 
-  def self.check_directory
+  def check_directory
     if current_directory != 'trail-map'
       print_directory_error
     end
   end
 
-  def self.current_directory
+  def current_directory
     File.basename(Dir.getwd)
   end
 
-  def self.print_directory_error
+  def print_directory_error
     puts 'ERROR: Run from trail-map project root'.red
     exit
   end
 
-  def self.print_starting_message
+  def print_starting_message
     puts 'Starting JSON validation'
     puts
   end
 
-  def self.run_validations_on_json_files
+  def run_validations_on_json_files
     Dir['**/*.json'].each do |file_name|
       JSONValidator.new(file_name).run
     end
   end
 
-  def self.print_closing_puts
+  def print_closing_puts
     puts
   end
 end
 
-TrailRunner.run
+TrailRunner.new.run
