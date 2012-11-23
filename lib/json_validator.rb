@@ -5,7 +5,7 @@ require 'colored'
 class JSONValidator
   def initialize(file_name)
     @file_name = file_name
-    @contents = contents
+    @contents = File.open(@file_name).read
   end
 
   def run
@@ -13,10 +13,6 @@ class JSONValidator
   end
 
   private
-
-  def contents
-    File.open(@file_name).read
-  end
 
   def check_json_validation
     if valid_json?
@@ -46,7 +42,6 @@ end
 
 class TrailRunner
   def run
-    check_directory
     print_starting_message
     run_validations_on_json_files
     print_closing_puts
@@ -54,30 +49,23 @@ class TrailRunner
 
   private
 
-  def check_directory
-    if current_directory != 'trail-map'
-      print_directory_error
-    end
-  end
-
-  def current_directory
-    File.basename(Dir.getwd)
-  end
-
-  def print_directory_error
-    puts 'ERROR: Run from trail-map project root'.red
-    exit
-  end
-
   def print_starting_message
     puts 'Starting JSON validation'
     puts
   end
 
   def run_validations_on_json_files
-    Dir['**/*.json'].each do |file_name|
+    json_files.each do |file_name|
       JSONValidator.new(file_name).run
     end
+  end
+
+  def json_files
+    Dir["#{script_directory}/../**/*.json"]
+  end
+
+  def script_directory
+    File.dirname(__FILE__)
   end
 
   def print_closing_puts
