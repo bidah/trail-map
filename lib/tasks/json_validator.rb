@@ -61,7 +61,7 @@ class TrailRunner
   end
 
   def json_files
-    Dir["#{script_directory}/../**/*.json"]
+    Dir["#{script_directory}/../../**/*.json"]
   end
 
   def script_directory
