@@ -13,7 +13,7 @@ class TrailRunner
   private
 
   def print_starting_message
-    puts 'Starting JSON validation\n'
+    puts "Starting JSON validation\n"
   end
 
   def run_validations_on_json_files

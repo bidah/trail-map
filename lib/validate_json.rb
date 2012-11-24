@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
-Dir['lib/helpers/*.rb'].each { |f| require File.expand_path(f) }
+script_directory = File.dirname(__FILE__)
+helper_files = script_directory + '/helpers/*.rb'
+
+Dir[helper_files].each { |file| require File.expand_path(file) }
 
 TrailRunner.new.run
