@@ -40,38 +40,3 @@ class JSONValidator
     puts "\nERROR: #{@file_name} is not valid JSON.".red
   end
 end
-
-class TrailRunner
-  def run
-    print_starting_message
-    run_validations_on_json_files
-    print_closing_puts
-  end
-
-  private
-
-  def print_starting_message
-    puts 'Starting JSON validation'
-    puts
-  end
-
-  def run_validations_on_json_files
-    json_files.each do |file_name|
-      JSONValidator.new(file_name).run
-    end
-  end
-
-  def json_files
-    Dir["#{script_directory}/../../**/*.json"]
-  end
-
-  def script_directory
-    File.dirname(__FILE__)
-  end
-
-  def print_closing_puts
-    puts
-  end
-end
-
-TrailRunner.new.run
