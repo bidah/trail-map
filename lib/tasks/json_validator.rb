@@ -1,6 +1,7 @@
-require 'rubygems'
-require 'json'
+require 'awesome_print'
 require 'colored'
+require 'json'
+require 'rubygems'
 
 class JSONValidator
   def initialize(file_name)
