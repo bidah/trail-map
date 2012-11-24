@@ -1,9 +1,6 @@
-$LOAD_PATH << File.expand_path('../lib', __FILE__)
+script_directory = File.dirname(__FILE__)
+helper_files = script_directory + '/../lib/helpers/*.rb'
 
-require 'tasks/json_validator'
-
-Dir['support/**/*.rb'].each { |f| require File.expand_path(f) }
-
-RSpec.configure do |c|
-  #?
+Dir[helper_files].each do |f|
+  require File.expand_path(f)
 end
