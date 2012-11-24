@@ -1,4 +1,5 @@
 source :rubygems
 
-gem 'json'
+gem 'awesome_print'
 gem 'colored'
+gem 'json'
