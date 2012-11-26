@@ -1,12 +1,17 @@
 require 'spec_helper'
+require 'rspec/mocks/standalone'
+require 'mocha_standalone'
+require 'bourne'
 
-describe JSONValidator, '#run' do
+describe TrailRunner, '#run' do
   it 'returns a starting message' do
-    mock_puts = stubs('puts')
+    fixture =  File.dirname(__FILE__) + '/fixtures/valid.json'
+    validator = JSONValidator.new(fixture)
+    validator.stubs(:puts)
 
-    TrailRunner.new.run
+    validator.run
 
-    mock_puts.should have_received "Starting JSON validation\n"
+    validator.should have_received(:puts)
   end
 
   it 'calls JSONValidator.new(file).run on each file' do
